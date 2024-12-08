@@ -17,19 +17,19 @@ const CustomCarousel = () => {
         animate="visible"
         style={{ width: '100%' }}
       >
-        <Carousel style={{ width: '100%', height: '380px', marginTop: '-50px' }}>
+        <Carousel style={{ width: '100%', height: '380px', marginTop: '-40px' }}>
           <Carousel.Item>
             <div
               style={{
                 position: 'relative',
                 width: '100%',
-                height: '390px',
+                height: '358px',
                 overflow: 'hidden',
               }}
             >
               <img
                 className="d-block w-100"
-                src="/images/slide3.jpg"
+                src="/images/slide1.jpg"
                 alt="First slide"
                 style={{
                   width: '100%',
@@ -51,8 +51,12 @@ const CustomCarousel = () => {
               ></div>
             </div>
             <Carousel.Caption>
-              <h3>Slide 1</h3>
-              <p>Description for Slide 1.</p>
+              <h3 className="text-4xl font-bold mb-3 text-white">
+                Empowering the Future of Every Child
+              </h3>
+              <p className="text-lg font-semibold text-white opacity-90">
+                Join us in building a brighter, safer world where every child has the opportunity to thrive. Together, we can make an impact!
+              </p>
             </Carousel.Caption>
           </Carousel.Item>
 
@@ -61,7 +65,7 @@ const CustomCarousel = () => {
               style={{
                 position: 'relative',
                 width: '100%',
-                height: '390px',
+                height: '358px',
                 overflow: 'hidden',
               }}
             >
@@ -89,8 +93,12 @@ const CustomCarousel = () => {
               ></div>
             </div>
             <Carousel.Caption>
-              <h3>Slide 2</h3>
-              <p>Description for Slide 2.</p>
+              <h3 className="text-4xl font-bold mb-3 text-white">
+                Bringing Smiles to Communities
+              </h3>
+              <p className="text-lg font-semibold text-white opacity-90">
+                We believe that together, we can bring smiles to the faces of children everywhere. Our vision is to empower communities for a better tomorrow.
+              </p>
             </Carousel.Caption>
           </Carousel.Item>
 
@@ -99,7 +107,7 @@ const CustomCarousel = () => {
               style={{
                 position: 'relative',
                 width: '100%',
-                height: '390px',
+                height: '358px',
                 overflow: 'hidden',
               }}
             >
@@ -127,8 +135,12 @@ const CustomCarousel = () => {
               ></div>
             </div>
             <Carousel.Caption>
-              <h3>Slide 3</h3>
-              <p>Description for Slide 3.</p>
+              <h3 className="text-4xl font-bold mb-3 text-white">
+                Join the Movement
+              </h3>
+              <p className="text-lg font-semibold text-white opacity-90">
+                Be a part of something bigger. Together, we can make the world a better place for children, one step at a time.
+              </p>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
