@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [showForm, setShowForm] = useState(null); // State to handle form visibility
-  const [role, setRole] = useState("public"); // State for role selection
-  const [agencyId, setAgencyId] = useState(""); // State for agency ID
+  const [role, setRole] = useState("public");
+  const [agencyId, setAgencyId] = useState(""); // State for Agency ID
+  const navigate = useNavigate(); // Hook for navigation
 
   const navbarVariants = {
     hidden: { opacity: 0, y: -50 },
@@ -21,7 +23,20 @@ const Navbar = () => {
   };
 
   const handleFormClose = () => {
-    setShowForm(null); // Close the form when clicking outside or on close button
+    setShowForm(null); // Close the form
+  };
+
+  const handleSignup = (e) => {
+    e.preventDefault();
+
+    // Set default Agency ID to "NA" for public role
+    const finalAgencyId = role === "public" ? "NA" : agencyId;
+
+    // Logic for signing up (you can integrate API calls here)
+    console.log("Signup Details:", { role, agencyId: finalAgencyId });
+
+    // Redirect to UserDashboard
+    navigate("/dashboard"); // Updated to match App.jsx route
   };
 
   return (
@@ -78,44 +93,17 @@ const Navbar = () => {
                 &times;
               </button>
             </div>
-            {showForm === "Login" ? (
-              <div>
-                <h2 className="text-3xl text-white mb-4 text-center">Login</h2>
-                <form>
-                  <div className="mb-4">
-                    <label className="text-white block mb-2">Username</label>
-                    <input
-                      type="text"
-                      placeholder="Enter username"
-                      className="w-full p-2 rounded-md bg-white text-purple-900"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label className="text-white block mb-2">Password</label>
-                    <input
-                      type="password"
-                      placeholder="Enter password"
-                      className="w-full p-2 rounded-md bg-white text-purple-900"
-                    />
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full bg-purple-700 text-white py-2 rounded-md hover:bg-purple-600 transition duration-300"
-                  >
-                    Login
-                  </button>
-                </form>
-              </div>
-            ) : (
+            {showForm === "Signup" && (
               <div>
                 <h2 className="text-3xl text-white mb-4 text-center">Signup</h2>
-                <form>
+                <form onSubmit={handleSignup}>
                   <div className="mb-4">
                     <label className="text-white block mb-2">Username</label>
                     <input
                       type="text"
                       placeholder="Enter username"
                       className="w-full p-2 rounded-md bg-white text-purple-900"
+                      required
                     />
                   </div>
                   <div className="mb-4">
@@ -124,9 +112,9 @@ const Navbar = () => {
                       type="password"
                       placeholder="Enter password"
                       className="w-full p-2 rounded-md bg-white text-purple-900"
+                      required
                     />
                   </div>
-                  {/* Role Dropdown */}
                   <div className="mb-4">
                     <label className="text-white block mb-2">Role</label>
                     <select
@@ -138,21 +126,19 @@ const Navbar = () => {
                       <option value="agency">Agency</option>
                     </select>
                   </div>
-
-                  {/* Agency ID Field (Visible if 'Agency' role is selected) */}
                   {role === "agency" && (
                     <div className="mb-4">
                       <label className="text-white block mb-2">Agency ID</label>
                       <input
                         type="text"
-                        placeholder="Enter agency ID"
                         value={agencyId}
                         onChange={(e) => setAgencyId(e.target.value)}
+                        placeholder="Enter agency ID"
                         className="w-full p-2 rounded-md bg-white text-purple-900"
+                        required
                       />
                     </div>
                   )}
-
                   <button
                     type="submit"
                     className="w-full bg-purple-700 text-white py-2 rounded-md hover:bg-purple-600 transition duration-300"

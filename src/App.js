@@ -1,13 +1,15 @@
-// Import React and the LandingPage component
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
+import UserDashboard from "./pages/UserDashboard";
 
-// Main App Component
 function App() {
   return (
     <div className="App">
-      {/* Rendering LandingPage which includes Navbar and Carousel */}
-      <LandingPage />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/dashboard" element={<UserDashboard />} />
+      </Routes>
     </div>
   );
 }
