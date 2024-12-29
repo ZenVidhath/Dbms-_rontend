@@ -4,6 +4,7 @@ import WelcomeSection2 from "../components/WelcomeSection2";
 import ReportMissingChild from "../components/ReportMissingChild";
 import SubmittedReports from "../components/SubmittedReports";
 import NotificationList from "../components/NotificationList";
+import AssignedAgencyCard from "../components/AssignedAgencyCard";
 
 const UserDashboard = () => {
   console.log("UserDashboard rendered"); // Debugging log
@@ -17,6 +18,7 @@ const UserDashboard = () => {
         <WelcomeSection2/>
         <ReportMissingChild/>
         <SubmittedReports/>
+        <AssignedAgencyCard  />
         <NotificationList/>
       </div>
     </div>

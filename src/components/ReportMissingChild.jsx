@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 
 const ReportMissingChild = () => {
@@ -7,7 +8,7 @@ const ReportMissingChild = () => {
     dob: '',
     description: '',
     last_seen_info: '',
-    reported_by: '', // Added reported_by field
+    reported_by: '',
   });
 
   const handleChange = (e) => {
@@ -15,11 +16,30 @@ const ReportMissingChild = () => {
     setChildData({ ...childData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Submitted Data:', childData);
-    alert('This feature will be enabled after API integration.');
-    setChildData({ name: '', dob: '', description: '', last_seen_info: '', reported_by: '' });
+    try {
+      // Configure headers
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+
+      // Make the POST request with payload and headers
+      const response = await axios.post(
+        'http://localhost:5000/api/children', // Replace with the actual backend URL
+        JSON.stringify(childData), // Payload as JSON string
+        config
+      );
+
+      console.log('Response:', response.data);
+      alert('Child report submitted successfully!');
+      setChildData({ name: '', dob: '', description: '', last_seen_info: '', reported_by: '' });
+    } catch (error) {
+      console.error('Error submitting child report:', error);
+      alert('Failed to submit the report. Please try again later.');
+    }
   };
 
   return (
